@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const UserCard = ({ user }) => {
 	return (
-		<div className="p-2 w-full  ">
+		<div className="p-2 w-full ">
 			<div className="h-full flex items-center border-[var(--secondary-color)] border p-4 rounded-lg">
 				<img
 					alt="team"
@@ -11,11 +11,11 @@ const UserCard = ({ user }) => {
 					src={user?.image}
 				/>
 				<div className="flex-grow text-[var(--secondary-color)]">
-					<Link to={`/users/${user?.id}`}>
-						<h2 className="title-font font-medium ">
+					<h2 className="title-font font-medium ">
+						<Link to={`/users/${user?.id}`}>
 							{user.firstName + ' ' + user.lastName}
-						</h2>
-					</Link>
+						</Link>
+					</h2>
 					<p className="text-gray-500 text-sm mb-2">{user.email}</p>
 					<p className="text-xs">Phone: {user.phone}</p>
 					<p className="text-xs">
