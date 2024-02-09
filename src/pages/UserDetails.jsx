@@ -3,8 +3,8 @@ const UserDetails = () => {
 	const user = useLoaderData();
 
 	return (
-		<div className="container p-2 max-w-screen-sm">
-			<div className="border-[var(--secondary-color)] border p-4 rounded-lg text-center">
+		<div className="container p-2 max-w-screen-sm ">
+			<div className="border-[var(--secondary-color)] border p-4 rounded-lg text-center bg-slate-50">
 				<h1 className="font-bold text-2xl text-[var(--secondary-color)]">
 					{user?.firstName + ' ' + user?.lastName}&apos;s details
 				</h1>

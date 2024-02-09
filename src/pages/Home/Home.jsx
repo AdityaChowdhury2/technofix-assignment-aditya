@@ -69,7 +69,7 @@ const Home = () => {
 	}, [showModal]);
 
 	return (
-		<div className="container mt-10">
+		<div className="container my-10">
 			<div className="flex justify-evenly md:flex-row flex-col gap-3 px-3">
 				<input
 					type="text"
