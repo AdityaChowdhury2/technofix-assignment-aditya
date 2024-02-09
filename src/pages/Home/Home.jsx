@@ -112,7 +112,7 @@ const Home = () => {
 				/>
 			)}
 			{users.length ? (
-				<div className="grid mt-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+				<div className="grid mt-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
 					{users.map(user => (
 						<UserCard key={user.id} user={user} />
 					))}

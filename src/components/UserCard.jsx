@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const UserCard = ({ user }) => {
 	return (
-		<div className="p-2 w-full ">
-			<div className="h-full flex items-center border-[var(--secondary-color)] border p-4 rounded-lg">
+		<div className=" p-2 w-full ">
+			<div className="h-full flex items-center border-[var(--secondary-color)] hover:scale-105 hover:-rotate-2 transition-transform duration-700 bg-slate-50 border p-4 rounded-lg">
 				<img
 					alt="team"
 					className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
