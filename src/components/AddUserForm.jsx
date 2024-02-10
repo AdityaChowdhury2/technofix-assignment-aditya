@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage } from '@hookform/error-message';
+import { addUser } from '../utils/localStorageDB';
 
 const schema = Yup.object().shape({
 	firstName: Yup.string()
@@ -15,8 +16,8 @@ const schema = Yup.object().shape({
 		.max(50, 'Last Name is too long'),
 	email: Yup.string().email('Invalid email').required('Email is required'),
 	avatarUrl: Yup.string().url('Invalid URL').required('Avatar URL is required'),
-	address: Yup.string().required('Address is required'),
-	companyName: Yup.string().required('Company Name is required'),
+	fullAddress: Yup.string().required('Address is required'),
+	company: Yup.string().required('Company Name is required'),
 });
 const AddUserForm = ({ hideUserForm, openModal, setNewUser }) => {
 	const {
@@ -28,9 +29,14 @@ const AddUserForm = ({ hideUserForm, openModal, setNewUser }) => {
 	});
 	const onSubmit = data => {
 		hideUserForm();
-
 		openModal();
-		setNewUser(data);
+		const newUser = {
+			...data,
+			company: { name: data.company },
+			id: Math.floor(Math.random() * 100 + 100),
+		};
+		setNewUser(newUser);
+		addUser(newUser);
 	};
 
 	return (
@@ -122,11 +128,11 @@ const AddUserForm = ({ hideUserForm, openModal, setNewUser }) => {
 						type="text"
 						placeholder="Type here"
 						className="input input-bordered w-full"
-						{...register('address')}
+						{...register('fullAddress')}
 					/>
 					<ErrorMessage
 						errors={errors}
-						name="address"
+						name="fullAddress"
 						render={error => (
 							<p className="text-start text-xs text-red-400">{error.message}</p>
 						)}
@@ -140,11 +146,11 @@ const AddUserForm = ({ hideUserForm, openModal, setNewUser }) => {
 						type="text"
 						placeholder="Type here"
 						className="input input-bordered w-full"
-						{...register('companyName')}
+						{...register('company')}
 					/>
 					<ErrorMessage
 						errors={errors}
-						name="companyName"
+						name="company"
 						render={error => (
 							<p className="text-start text-xs text-red-400">{error.message}</p>
 						)}

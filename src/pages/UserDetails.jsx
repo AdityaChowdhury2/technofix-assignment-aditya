@@ -20,11 +20,12 @@ const UserDetails = () => {
 				<p className="">Email: {user?.email}</p>
 				<p className="">
 					Address:{' '}
-					{user.address?.address +
-						', ' +
-						user.address?.city +
-						', ' +
-						user.address?.state}
+					{user?.fullAddress ||
+						user.address?.address +
+							', ' +
+							user.address?.city +
+							', ' +
+							user.address?.state}
 				</p>
 				<p className="">Company: {user?.company?.name}</p>
 			</div>

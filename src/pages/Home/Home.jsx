@@ -3,9 +3,10 @@ import { FaMinus, FaPlus } from 'react-icons/fa';
 import UserCard from '../../components/UserCard';
 import AddUserForm from '../../components/AddUserForm';
 import FadeLoader from 'react-spinners/FadeLoader';
+import { getUsers } from '../../utils/localStorageDB';
 
 const Home = () => {
-	const [users, setUsers] = useState([]);
+	const [users, setUsers] = useState(getUsers());
 	const [searchText, setSearchText] = useState('');
 	const [sortBy, setSortBy] = useState('name');
 	const [loading, setLoading] = useState(true);
@@ -41,14 +42,17 @@ const Home = () => {
 			const data = await response.json();
 			setLoading(false);
 			let userData = data.users;
+			const allUsers = [...getUsers(), ...userData];
 			if (searchText !== '') {
-				userData = data.users.filter(
+				userData = allUsers.filter(
 					user =>
 						user.firstName.toLowerCase().includes(searchText.toLowerCase()) ||
 						user.lastName.toLowerCase().includes(searchText.toLowerCase())
 				);
+				sortData(userData);
+			} else {
+				sortData(allUsers);
 			}
-			sortData(userData);
 		};
 		fetchUsers();
 	}, [searchText, sortBy]);
@@ -67,6 +71,15 @@ const Home = () => {
 			window.removeEventListener('keydown', handleEsc);
 		};
 	}, [showModal]);
+
+	useEffect(() => {
+		if (newUser.id) {
+			setUsers(prevState => [...prevState, newUser]);
+		}
+	}, [newUser]);
+	console.log(newUser);
+
+	console.log(users.length);
 
 	return (
 		<div className="container my-10">
@@ -148,7 +161,7 @@ const Home = () => {
 						<p className="text-sm">FirstName: {newUser?.firstName}</p>
 						<p className="text-sm">LastName: {newUser?.lastName}</p>
 						<p className="text-sm">Email: {newUser?.email}</p>
-						<p className="text-sm">Address: {newUser?.address}</p>
+						<p className="text-sm">Address: {newUser?.fullAddress}</p>
 						<p className="text-sm">Company: {newUser?.companyName}</p>
 					</div>
 				</div>
