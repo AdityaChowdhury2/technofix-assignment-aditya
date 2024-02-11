@@ -77,9 +77,6 @@ const Home = () => {
 			setUsers(prevState => [...prevState, newUser]);
 		}
 	}, [newUser]);
-	console.log(newUser);
-
-	console.log(users.length);
 
 	return (
 		<div className="container my-10">
