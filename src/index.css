@@ -4,7 +4,6 @@
 
 :root {
 	background-color: #e9f5ff;
-	--secondary-color: red;
-	/* --secondary-color: #2e2b7e; */
+	--secondary-color: #2e2b7e;
 	--secondary-color-dark: #27246a;
 }
